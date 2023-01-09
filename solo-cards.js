@@ -71,7 +71,7 @@ const soloCards = [{
     ]
 },
 {
-    quantity: 1,
+    quantity: 2,
     command: "Go Left - Must move 1 Hex left",
     rolls: [
          {
