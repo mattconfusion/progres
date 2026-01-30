@@ -1,0 +1,348 @@
+/* PROGRES Terminal CSS - Barebones CRT */
+
+:root {
+    --black: #000000;
+    --grey: #AAAAAA;
+    
+    /* Orange phosphor (default) */
+    --primary: #FF9900;
+    --primary-dim: #995500;
+}
+
+/* Green phosphor theme */
+body.green-phosphor {
+    --primary: #33FF33;
+    --primary-dim: #1A8C1A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--black);
+}
+
+body {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--primary);
+}
+
+/* Scanlines overlay */
+#scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1000;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.4) 2px,
+        rgba(0, 0, 0, 0.4) 4px
+    );
+}
+
+/* Phosphor glow effect */
+#terminal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary-dim);
+}
+
+/* Output area */
+#output {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+#output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#output::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: var(--primary-dim);
+}
+
+/* Output lines */
+.line {
+    margin-bottom: 8px;
+    animation: flicker 0.05s ease-in-out;
+}
+
+.line.dim {
+    color: var(--grey);
+    text-shadow: 0 0 5px var(--grey);
+}
+
+.line.bright {
+    color: var(--primary);
+    font-size: 32px;
+    text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+}
+
+.line.card {
+    font-size: 32px;
+    margin: 16px 0;
+    padding: 12px;
+    border: 2px solid var(--primary);
+    text-align: center;
+    text-shadow: 0 0 20px var(--primary);
+}
+
+.line.roll {
+    font-size: 22px;
+    color: var(--primary);
+    margin: 8px 0;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.line.combat-info {
+    font-size: 22px;
+    color: var(--grey);
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.line.header {
+    font-size: 22px;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 6px;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.line.description {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--grey);
+    margin: 16px 0;
+    padding: 10px 0;
+    text-shadow: 0 0 5px var(--grey);
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+}
+
+/* Controls area */
+#controls {
+    padding-top: 20px;
+    border-top: 1px solid var(--primary-dim);
+}
+
+#main-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* Action buttons */
+.action-btn {
+    flex: 1;
+    padding: 16px 24px;
+    font-family: inherit;
+    font-size: 24px;
+    background: var(--black);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    text-shadow: 0 0 10px var(--primary);
+    transition: all 0.1s ease;
+    min-height: 56px;
+}
+
+.action-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: var(--black);
+    text-shadow: none;
+    box-shadow: 0 0 20px var(--primary);
+}
+
+.action-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.action-btn:disabled {
+    color: var(--primary-dim);
+    border-color: var(--primary-dim);
+    cursor: not-allowed;
+    text-shadow: none;
+}
+
+/* Color toggle button */
+.color-btn {
+    width: 56px;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 24px;
+    background: var(--black);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    text-shadow: 0 0 10px var(--primary);
+    transition: all 0.1s ease;
+}
+
+.color-btn:hover {
+    background: var(--primary);
+    color: var(--black);
+    text-shadow: none;
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* Button groups for selection */
+.button-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.button-group .label {
+    color: var(--grey);
+    font-size: 18px;
+    min-width: 120px;
+    text-shadow: none;
+}
+
+.select-btn {
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 18px;
+    background: var(--black);
+    color: var(--grey);
+    border: 1px solid var(--grey);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    min-height: 44px;
+}
+
+.select-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.select-btn.selected {
+    background: var(--primary);
+    color: var(--black);
+    border-color: var(--primary);
+    text-shadow: none;
+}
+
+/* Hidden state */
+.hidden {
+    display: none !important;
+}
+
+/* Game setup panel */
+#game-setup {
+    padding: 16px;
+    border: 1px solid var(--primary-dim);
+    margin-top: 16px;
+}
+
+#game-setup .action-btn {
+    margin-top: 16px;
+    width: 100%;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    body {
+        font-size: 20px;
+    }
+    
+    #terminal {
+        padding: 12px;
+    }
+    
+    .action-btn {
+        font-size: 20px;
+        padding: 14px 16px;
+    }
+    
+    .select-btn {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+    
+    .button-group .label {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+    
+    .line.card {
+        font-size: 24px;
+    }
+    
+    .line.bright {
+        font-size: 24px;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1200px) {
+    body {
+        font-size: 28px;
+    }
+    
+    .action-btn {
+        font-size: 28px;
+    }
+    
+    .line.card {
+        font-size: 36px;
+    }
+}
+
+/* ASCII art styling */
+.ascii {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    line-height: 1.2;
+    color: var(--primary);
+    white-space: pre;
+    text-shadow: 0 0 10px var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: 0;
+}
+
+@media (max-width: 400px) {
+    .ascii {
+        font-size: 14px;
+    }
+}
+
+/* Blinking caret */
+.caret {
+    display: inline-block;
+    color: var(--primary);
+    animation: blink 1s step-end infinite;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}

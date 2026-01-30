@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PROGRES - Ogre Solo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body>
+    <div id="scanlines"></div>
+    
+    <main id="terminal">
+        <div id="output"></div>
+        
+        <div id="controls">
+            <div id="main-buttons">
+                <button id="btn-new" class="action-btn">NEW GAME</button>
+                <button id="btn-draw" class="action-btn" disabled>DRAW CARD</button>
+                <button id="btn-color" class="color-btn" title="Toggle phosphor color">◐</button>
+            </div>
+            
+            <div id="game-setup" class="hidden">
+                <div class="button-group">
+                    <span class="label">OGRE TYPE:</span>
+                    <button class="select-btn selected" data-ogre="mk3">MK III</button>
+                    <button class="select-btn" data-ogre="mk5">MK V</button>
+                </div>
+                <div class="button-group">
+                    <span class="label">DEVIATION:</span>
+                    <button class="select-btn selected" data-dev="right">RIGHT</button>
+                    <button class="select-btn" data-dev="left">LEFT</button>
+                    <button class="select-btn" data-dev="same">SAME</button>
+                    <button class="select-btn" data-dev="opposite">ALT</button>
+                </div>
+                <button id="btn-start" class="action-btn">START</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/dice.js"></script>
+    <script src="js/solo-engine.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
