@@ -236,9 +236,6 @@ const Game = (function() {
         
         // Add blinking caret
         addCaret();
-        
-        // Scroll to bottom
-        outputEl.scrollTop = outputEl.scrollHeight;
     }
     
     /**

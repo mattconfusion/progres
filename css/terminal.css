@@ -46,9 +46,9 @@ body {
     background: repeating-linear-gradient(
         0deg,
         transparent 0px,
-        transparent 2px,
-        rgba(0, 0, 0, 0.4) 2px,
-        rgba(0, 0, 0, 0.4) 4px
+        transparent 3px,
+        rgba(0, 0, 0, 0.15) 3px,
+        rgba(0, 0, 0, 0.15) 4px
     );
 }
 
@@ -87,8 +87,9 @@ body {
 }
 
 .line.dim {
-    color: var(--grey);
-    text-shadow: 0 0 5px var(--grey);
+    color: #CCCCCC;
+    font-size: 24px;
+    text-shadow: 0 0 8px #CCCCCC;
 }
 
 .line.bright {
@@ -114,10 +115,11 @@ body {
 }
 
 .line.combat-info {
-    font-size: 22px;
-    color: var(--grey);
+    font-size: 24px;
+    color: #CCCCCC;
     margin: 10px 0;
     line-height: 1.5;
+    text-shadow: 0 0 8px #CCCCCC;
 }
 
 .line.header {
@@ -131,12 +133,12 @@ body {
 }
 
 .line.description {
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1.5;
-    color: var(--grey);
+    color: #CCCCCC;
     margin: 16px 0;
     padding: 10px 0;
-    text-shadow: 0 0 5px var(--grey);
+    text-shadow: 0 0 8px #CCCCCC;
 }
 
 @keyframes flicker {
@@ -270,34 +272,85 @@ body {
 /* Mobile responsive */
 @media (max-width: 600px) {
     body {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     #terminal {
-        padding: 12px;
+        padding: 10px;
+        padding-bottom: 0;
+    }
+    
+    #output {
+        padding-bottom: 10px;
+    }
+    
+    #controls {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    #main-buttons {
+        gap: 8px;
+        margin-bottom: 10px;
     }
     
     .action-btn {
+        font-size: 16px;
+        padding: 12px 10px;
+        min-height: 48px;
+    }
+    
+    .color-btn {
+        width: 48px;
+        padding: 12px;
         font-size: 20px;
-        padding: 14px 16px;
     }
     
     .select-btn {
-        font-size: 16px;
-        padding: 8px 12px;
+        font-size: 14px;
+        padding: 8px 10px;
+        min-height: 40px;
     }
     
     .button-group .label {
         width: 100%;
         margin-bottom: 4px;
+        font-size: 14px;
+    }
+    
+    .button-group {
+        gap: 6px;
+    }
+    
+    #game-setup {
+        padding: 10px;
+        margin-top: 10px;
     }
     
     .line.card {
-        font-size: 24px;
+        font-size: 20px;
+        padding: 10px;
+        margin: 12px 0;
     }
     
     .line.bright {
-        font-size: 24px;
+        font-size: 22px;
+    }
+    
+    .line.dim,
+    .line.description,
+    .line.combat-info {
+        font-size: 18px;
+    }
+    
+    .line.roll,
+    .line.header {
+        font-size: 18px;
+    }
+    
+    .ascii {
+        font-size: 11px;
+        letter-spacing: -0.5px;
     }
 }
 
@@ -330,7 +383,18 @@ body {
 
 @media (max-width: 400px) {
     .ascii {
+        font-size: 9px;
+        letter-spacing: -1px;
+    }
+    
+    .action-btn {
         font-size: 14px;
+        padding: 10px 8px;
+    }
+    
+    .color-btn {
+        width: 44px;
+        padding: 10px;
     }
 }
 
