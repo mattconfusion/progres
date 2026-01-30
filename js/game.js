@@ -105,9 +105,10 @@ const Game = (function() {
     }
     
     /**
-     * Print ASCII logo
+     * Print ASCII logo (preserves scroll position)
      */
     function printAscii() {
+        const scrollPos = outputEl.scrollTop;
         // Load logo from embedded data to preserve exact characters
         const ascii = [
             '┌─┐┬─┐╔═╗╔═╗╦═╗╔═╗┌─┐',
@@ -118,6 +119,7 @@ const Game = (function() {
         div.className = 'ascii';
         div.textContent = ascii;
         outputEl.appendChild(div);
+        outputEl.scrollTop = scrollPos;
     }
     
     /**
@@ -246,13 +248,16 @@ const Game = (function() {
     }
     
     /**
-     * Print a line
+     * Print a line (preserves scroll position)
      */
     function print(text, className = '') {
+        const scrollPos = outputEl.scrollTop;
         const div = document.createElement('div');
         div.className = `line ${className}`;
         div.textContent = text;
         outputEl.appendChild(div);
+        // Restore scroll position to prevent auto-scroll on mobile
+        outputEl.scrollTop = scrollPos;
     }
     
     /**
@@ -271,9 +276,10 @@ const Game = (function() {
     }
     
     /**
-     * Add blinking caret at end of output
+     * Add blinking caret at end of output (preserves scroll position)
      */
     function addCaret() {
+        const scrollPos = outputEl.scrollTop;
         // Remove existing caret
         const existing = outputEl.querySelector('.caret');
         if (existing) existing.remove();
@@ -282,6 +288,7 @@ const Game = (function() {
         caret.className = 'caret';
         caret.textContent = '█';
         outputEl.appendChild(caret);
+        outputEl.scrollTop = scrollPos;
     }
     
     // Initialize on DOM ready

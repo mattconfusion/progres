@@ -23,8 +23,11 @@ body.green-phosphor {
 
 html, body {
     height: 100%;
+    height: 100dvh; /* Dynamic viewport height for mobile */
     overflow: hidden;
     background: var(--black);
+    touch-action: manipulation; /* Prevent double-tap zoom */
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -57,6 +60,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
     padding: 20px;
     text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary-dim);
 }
@@ -277,16 +281,21 @@ body {
     
     #terminal {
         padding: 10px;
-        padding-bottom: 0;
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
     }
     
     #output {
         padding-bottom: 10px;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
     }
     
     #controls {
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
     
     #main-buttons {
@@ -350,7 +359,9 @@ body {
     
     .ascii {
         font-size: 11px;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.02em;
+        overflow-x: visible;
+        width: max-content;
     }
 }
 
@@ -371,20 +382,23 @@ body {
 
 /* ASCII art styling */
 .ascii {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    line-height: 1.2;
+    font-family: 'Courier New', 'Lucida Console', Monaco, monospace;
+    font-size: 16px;
+    line-height: 1.15;
     color: var(--primary);
     white-space: pre;
     text-shadow: 0 0 10px var(--primary);
     margin-bottom: 16px;
     letter-spacing: 0;
+    display: block;
 }
 
+/* Small phones (iPhone SE, etc.) */
 @media (max-width: 400px) {
     .ascii {
         font-size: 9px;
-        letter-spacing: -1px;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
     }
     
     .action-btn {
@@ -395,6 +409,24 @@ body {
     .color-btn {
         width: 44px;
         padding: 10px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 340px) {
+    .ascii {
+        font-size: 8px;
+        letter-spacing: -0.04em;
+    }
+    
+    #terminal {
+        padding: 6px;
+    }
+    
+    .action-btn {
+        font-size: 12px;
+        padding: 8px 6px;
+        min-height: 44px;
     }
 }
 
