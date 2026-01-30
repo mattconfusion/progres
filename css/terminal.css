@@ -357,11 +357,10 @@ body {
         font-size: 18px;
     }
     
-    .ascii {
-        font-size: 11px;
-        letter-spacing: -0.02em;
-        overflow-x: visible;
-        width: max-content;
+    pre.ascii {
+        font-size: 10px;
+        letter-spacing: 0;
+        line-height: 1.0;
     }
 }
 
@@ -380,25 +379,28 @@ body {
     }
 }
 
-/* ASCII art styling */
-.ascii {
-    font-family: 'Courier New', 'Lucida Console', Monaco, monospace;
-    font-size: 16px;
-    line-height: 1.15;
+/* ASCII art styling - use <pre> for consistent spacing */
+pre.ascii {
+    font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+    font-size: 14px;
+    line-height: 1.0;
     color: var(--primary);
     white-space: pre;
     text-shadow: 0 0 10px var(--primary);
-    margin-bottom: 16px;
+    margin: 0 0 16px 0;
+    padding: 0;
     letter-spacing: 0;
     display: block;
+    overflow-x: auto;
+    -webkit-text-size-adjust: 100%;
 }
 
 /* Small phones (iPhone SE, etc.) */
 @media (max-width: 400px) {
-    .ascii {
-        font-size: 9px;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
+    pre.ascii {
+        font-size: 8px;
+        letter-spacing: 0;
+        line-height: 1.0;
     }
     
     .action-btn {
@@ -414,9 +416,9 @@ body {
 
 /* Very small screens */
 @media (max-width: 340px) {
-    .ascii {
-        font-size: 8px;
-        letter-spacing: -0.04em;
+    pre.ascii {
+        font-size: 7px;
+        letter-spacing: 0;
     }
     
     #terminal {

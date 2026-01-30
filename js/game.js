@@ -109,16 +109,15 @@ const Game = (function() {
      */
     function printAscii() {
         const scrollPos = outputEl.scrollTop;
-        // Load logo from embedded data to preserve exact characters
-        const ascii = [
-            '┌─┐┬─┐╔═╗╔═╗╦═╗╔═╗┌─┐',
-            '├─┘├┬┘║ ║║ ╦╠╦╝║╣ └─┐',
-            '┴  ┴└─╚═╝╚═╝╩╚═╚═╝└─┘'
-        ].join('\n');
-        const div = document.createElement('div');
-        div.className = 'ascii';
-        div.textContent = ascii;
-        outputEl.appendChild(div);
+        // Original ASCII art - use <pre> for proper spacing
+        const ascii = 
+`┌─┐┬─┐╔═╗╔═╗╦═╗╔═╗┌─┐
+├─┘├┬┘║ ║║ ╦╠╦╝║╣ └─┐
+┴  ┴└─╚═╝╚═╝╩╚═╚═╝└─┘`;
+        const pre = document.createElement('pre');
+        pre.className = 'ascii';
+        pre.textContent = ascii;
+        outputEl.appendChild(pre);
         outputEl.scrollTop = scrollPos;
     }
     
