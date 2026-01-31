@@ -358,7 +358,7 @@ body {
     }
     
     pre.ascii {
-        font-size: 10px;
+        font-size: 14px;
         letter-spacing: 0;
         line-height: 1.0;
     }
@@ -381,8 +381,8 @@ body {
 
 /* ASCII art styling - use <pre> for consistent spacing */
 pre.ascii {
-    font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
-    font-size: 14px;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
     line-height: 1.0;
     color: var(--primary);
     white-space: pre;
@@ -393,12 +393,14 @@ pre.ascii {
     display: block;
     overflow-x: auto;
     -webkit-text-size-adjust: 100%;
+    font-variant-ligatures: none;
+    text-rendering: geometricPrecision;
 }
 
 /* Small phones (iPhone SE, etc.) */
 @media (max-width: 400px) {
     pre.ascii {
-        font-size: 8px;
+        font-size: 12px;
         letter-spacing: 0;
         line-height: 1.0;
     }
@@ -417,7 +419,7 @@ pre.ascii {
 /* Very small screens */
 @media (max-width: 340px) {
     pre.ascii {
-        font-size: 7px;
+        font-size: 10px;
         letter-spacing: 0;
     }
     
