@@ -105,7 +105,7 @@ const Game = (function() {
     }
     
     /**
-     * Print ASCII logo (preserves scroll position)
+     * Print ASCII logo (waits for font, preserves scroll position)
      */
     function printAscii() {
         const scrollPos = outputEl.scrollTop;
@@ -117,8 +117,21 @@ const Game = (function() {
         const pre = document.createElement('pre');
         pre.className = 'ascii';
         pre.textContent = ascii;
-        outputEl.appendChild(pre);
-        outputEl.scrollTop = scrollPos;
+        
+        // Wait for Source Code Pro font specifically
+        if (document.fonts && document.fonts.load) {
+            document.fonts.load('16px "Source Code Pro"').then(() => {
+                outputEl.appendChild(pre);
+                outputEl.scrollTop = scrollPos;
+            }).catch(() => {
+                // Fallback if font load fails
+                outputEl.appendChild(pre);
+                outputEl.scrollTop = scrollPos;
+            });
+        } else {
+            outputEl.appendChild(pre);
+            outputEl.scrollTop = scrollPos;
+        }
     }
     
     /**
