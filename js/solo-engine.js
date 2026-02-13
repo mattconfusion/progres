@@ -162,6 +162,8 @@ const SoloEngine = (function() {
             }
             deck = shuffle(discardPile);
             discardPile = [];
+            // Remove one random card per Ogre Solo rules
+            removedCard = deck.pop();
         }
         
         // Draw card

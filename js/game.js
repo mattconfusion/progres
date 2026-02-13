@@ -17,6 +17,7 @@ const Game = (function() {
     let outputEl;
     let btnNew, btnDraw, btnStart;
     let setupPanel;
+    let tabBtns, tabContents;
     
     /**
      * Initialize the game
@@ -29,10 +30,19 @@ const Game = (function() {
         btnStart = document.getElementById('btn-start');
         setupPanel = document.getElementById('game-setup');
         
+        // Tab elements
+        tabBtns = document.querySelectorAll('.tab-btn');
+        tabContents = document.querySelectorAll('.tab-content');
+        
         // Button handlers
         btnNew.addEventListener('click', showSetup);
         btnDraw.addEventListener('click', drawCard);
         btnStart.addEventListener('click', startGame);
+        
+        // Tab switching
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
         
         // Color toggle
         const btnColor = document.getElementById('btn-color');
@@ -55,6 +65,26 @@ const Game = (function() {
         
         // Welcome screen
         showWelcome();
+    }
+    
+    /**
+     * Switch between tabs
+     */
+    function switchTab(tabId) {
+        // Update tab buttons
+        tabBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.tab === tabId);
+        });
+        
+        // Update tab content
+        tabContents.forEach(content => {
+            content.classList.toggle('active', content.id === `${tabId}-tab`);
+        });
+        
+        // Re-render tracker when switching to ogre tab
+        if (tabId === 'ogre' && typeof OgreTracker !== 'undefined') {
+            OgreTracker.render();
+        }
     }
     
     /**
@@ -105,7 +135,7 @@ const Game = (function() {
     }
     
     /**
-     * Print ASCII logo (waits for font, preserves scroll position)
+     * Print ASCII logo (synchronous, preserves scroll position)
      */
     function printAscii() {
         const scrollPos = outputEl.scrollTop;
@@ -117,21 +147,8 @@ const Game = (function() {
         const pre = document.createElement('pre');
         pre.className = 'ascii';
         pre.textContent = ascii;
-        
-        // Wait for Source Code Pro font specifically
-        if (document.fonts && document.fonts.load) {
-            document.fonts.load('16px "Source Code Pro"').then(() => {
-                outputEl.appendChild(pre);
-                outputEl.scrollTop = scrollPos;
-            }).catch(() => {
-                // Fallback if font load fails
-                outputEl.appendChild(pre);
-                outputEl.scrollTop = scrollPos;
-            });
-        } else {
-            outputEl.appendChild(pre);
-            outputEl.scrollTop = scrollPos;
-        }
+        outputEl.appendChild(pre);
+        outputEl.scrollTop = scrollPos;
     }
     
     /**
@@ -170,6 +187,11 @@ const Game = (function() {
         // Initialize deck
         const result = SoloEngine.initGame();
         
+        // Initialize Ogre tracker
+        if (typeof OgreTracker !== 'undefined') {
+            OgreTracker.init(state.ogreType);
+        }
+        
         // Hide setup
         setupPanel.classList.add('hidden');
         
@@ -191,6 +213,7 @@ const Game = (function() {
         print(`Deviation rule: ${devNames[state.deviationRule]}`, 'dim');
         print('');
         print('Press [DRAW CARD] to begin turn', 'dim');
+        print('Switch to OGRE tab to track damage', 'dim');
         addCaret();
         
         // Enable draw button

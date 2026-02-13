@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PROGRES - Ogre Solo</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+    <meta name="theme-color" content="#000000">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Source+Code+Pro:wght@400&display=block" rel="stylesheet">
@@ -13,29 +22,112 @@
     <div id="scanlines"></div>
     
     <main id="terminal">
-        <div id="output"></div>
+        <!-- Tab Bar -->
+        <div id="tab-bar">
+            <button class="tab-btn active" data-tab="cards">CARDS</button>
+            <button class="tab-btn" data-tab="ogre">OGRE</button>
+        </div>
         
-        <div id="controls">
-            <div id="main-buttons">
-                <button id="btn-new" class="action-btn">NEW GAME</button>
-                <button id="btn-draw" class="action-btn" disabled>DRAW CARD</button>
-                <button id="btn-color" class="color-btn" title="Toggle phosphor color">◐</button>
-            </div>
+        <!-- Cards Tab -->
+        <div id="cards-tab" class="tab-content active">
+            <div id="output"></div>
             
-            <div id="game-setup" class="hidden">
-                <div class="button-group">
-                    <span class="label">OGRE TYPE:</span>
-                    <button class="select-btn selected" data-ogre="mk3">MK III</button>
-                    <button class="select-btn" data-ogre="mk5">MK V</button>
+            <div id="controls">
+                <div id="main-buttons">
+                    <button id="btn-new" class="action-btn">NEW GAME</button>
+                    <button id="btn-draw" class="action-btn" disabled>DRAW CARD</button>
+                    <button id="btn-color" class="color-btn" title="Toggle phosphor color">◐</button>
                 </div>
-                <div class="button-group">
-                    <span class="label">DEVIATION:</span>
-                    <button class="select-btn selected" data-dev="right">RIGHT</button>
-                    <button class="select-btn" data-dev="left">LEFT</button>
-                    <button class="select-btn" data-dev="same">SAME</button>
-                    <button class="select-btn" data-dev="opposite">ALT</button>
+                
+                <div id="game-setup" class="hidden">
+                    <div class="button-group">
+                        <span class="label">OGRE TYPE:</span>
+                        <button class="select-btn selected" data-ogre="mk3">MK III</button>
+                        <button class="select-btn" data-ogre="mk5">MK V</button>
+                    </div>
+                    <div class="button-group">
+                        <span class="label">DEVIATION:</span>
+                        <button class="select-btn selected" data-dev="right">RIGHT</button>
+                        <button class="select-btn" data-dev="left">LEFT</button>
+                        <button class="select-btn" data-dev="same">SAME</button>
+                        <button class="select-btn" data-dev="opposite">ALT</button>
+                    </div>
+                    <button id="btn-start" class="action-btn">START</button>
                 </div>
-                <button id="btn-start" class="action-btn">START</button>
+            </div>
+        </div>
+        
+        <!-- Ogre Tab -->
+        <div id="ogre-tab" class="tab-content">
+            <div id="ogre-status">
+                <div id="ogre-title" class="tracker-title">SELECT OGRE TYPE</div>
+                
+                <div id="tracker-content" class="hidden">
+                    <!-- Weapons Section -->
+                    <div class="tracker-section">
+                        <div class="tracker-row" data-weapon="missiles">
+                            <div class="tracker-label">MISSILES</div>
+                            <div class="tracker-bar"><span class="bar-fill"></span></div>
+                            <div class="tracker-count">0/0</div>
+                            <div class="tracker-buttons">
+                                <button class="pm-btn" data-action="dec">−</button>
+                                <button class="pm-btn" data-action="inc">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tracker-row" data-weapon="main">
+                            <div class="tracker-label">MAIN BATTERY</div>
+                            <div class="tracker-bar"><span class="bar-fill"></span></div>
+                            <div class="tracker-count">0/0</div>
+                            <div class="tracker-buttons">
+                                <button class="pm-btn" data-action="dec">−</button>
+                                <button class="pm-btn" data-action="inc">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tracker-row" data-weapon="secondary">
+                            <div class="tracker-label">SECONDARY</div>
+                            <div class="tracker-bar"><span class="bar-fill"></span></div>
+                            <div class="tracker-count">0/0</div>
+                            <div class="tracker-buttons">
+                                <button class="pm-btn" data-action="dec">−</button>
+                                <button class="pm-btn" data-action="inc">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tracker-row" data-weapon="ap">
+                            <div class="tracker-label">ANTIPERSONNEL</div>
+                            <div class="tracker-bar"><span class="bar-fill"></span></div>
+                            <div class="tracker-count">0/0</div>
+                            <div class="tracker-buttons">
+                                <button class="pm-btn" data-action="dec">−</button>
+                                <button class="pm-btn" data-action="inc">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Treads Section -->
+                    <div class="tracker-divider"></div>
+                    
+                    <div class="tracker-section">
+                        <div class="tracker-row" data-weapon="treads">
+                            <div class="tracker-label">TREADS</div>
+                            <div class="tracker-bar"><span class="bar-fill"></span></div>
+                            <div class="tracker-count">0/0</div>
+                            <div class="tracker-buttons">
+                                <button class="pm-btn" data-action="dec">−</button>
+                                <button class="pm-btn" data-action="inc">+</button>
+                            </div>
+                        </div>
+                        <div class="movement-display">
+                            MOVEMENT: <span id="movement-value">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tracker-empty">
+                    <p>Start a new game to track Ogre status.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -43,6 +135,8 @@
     <script src="js/dice.js"></script>
     <script src="js/solo-engine.js"></script>
     <script src="js/combat.js"></script>
+    <script src="ogre-model.js"></script>
+    <script src="js/ogre-tracker.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>

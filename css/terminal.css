@@ -446,3 +446,257 @@ pre.ascii {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
 }
+
+/* ===== TAB BAR ===== */
+#tab-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 20px;
+    background: var(--black);
+    color: var(--primary-dim);
+    border: 1px solid var(--primary-dim);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    text-shadow: 0 0 10px var(--primary);
+}
+
+/* Tab content */
+.tab-content {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* ===== OGRE TRACKER ===== */
+#ogre-status {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.tracker-title {
+    font-size: 28px;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 24px;
+    text-shadow: 0 0 15px var(--primary);
+}
+
+#tracker-content {
+    flex: 1;
+}
+
+#tracker-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+    font-size: 20px;
+    text-shadow: none;
+}
+
+.tracker-section {
+    margin-bottom: 16px;
+}
+
+.tracker-divider {
+    border-top: 1px solid var(--primary-dim);
+    margin: 24px 0;
+}
+
+/* Tracker row */
+.tracker-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.tracker-label {
+    font-size: 18px;
+    color: var(--grey);
+    text-shadow: none;
+}
+
+.tracker-bar {
+    width: 100px;
+    height: 16px;
+    background: var(--black);
+    border: 1px solid var(--primary-dim);
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.2s ease;
+}
+
+.tracker-count {
+    font-size: 20px;
+    color: var(--primary);
+    min-width: 60px;
+    text-align: right;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.tracker-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Plus/Minus buttons */
+.pm-btn {
+    width: 48px;
+    height: 48px;
+    font-family: inherit;
+    font-size: 28px;
+    background: var(--black);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.pm-btn:hover {
+    background: var(--primary);
+    color: var(--black);
+    text-shadow: none;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.pm-btn:active {
+    transform: scale(0.95);
+}
+
+.pm-btn:disabled {
+    color: var(--primary-dim);
+    border-color: var(--primary-dim);
+    cursor: not-allowed;
+    text-shadow: none;
+}
+
+/* Movement display */
+.movement-display {
+    font-size: 24px;
+    color: var(--primary);
+    text-align: center;
+    margin-top: 16px;
+    padding: 12px;
+    border: 2px solid var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+#movement-value {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ===== MOBILE RESPONSIVE - TABS & TRACKER ===== */
+@media (max-width: 600px) {
+    #tab-bar {
+        margin-bottom: 10px;
+    }
+    
+    .tab-btn {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+    
+    .tracker-title {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+    
+    .tracker-row {
+        grid-template-columns: 1fr auto auto;
+        gap: 8px;
+    }
+    
+    .tracker-bar {
+        display: none;
+    }
+    
+    .tracker-label {
+        font-size: 14px;
+    }
+    
+    .tracker-count {
+        font-size: 18px;
+        min-width: 50px;
+    }
+    
+    .pm-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+    
+    .movement-display {
+        font-size: 20px;
+        padding: 10px;
+    }
+    
+    #movement-value {
+        font-size: 28px;
+    }
+    
+    #tracker-empty {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .tracker-row {
+        gap: 6px;
+    }
+    
+    .pm-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+    
+    .tracker-count {
+        font-size: 16px;
+        min-width: 45px;
+    }
+}

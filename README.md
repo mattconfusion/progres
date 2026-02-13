@@ -6,7 +6,7 @@
 
 # PROGRES - Ogre Solo Play Assistant
 
-**[▶ Play Now on GitHub Pages](https://mattconfusion.github.io/progres/)**
+**[▶ Play Now on GitHub Pages](https://mattconfuion.github.io/progres/)**
 
 A touch-friendly web tool for solo play of Steve Jackson's OGRE (6th Edition).
 
@@ -53,6 +53,16 @@ PROGRES implements the **Ogre Solo** card-based system. At each turn, draw a car
 4. Select deviation rule for terrain avoidance
 5. Press **[START]**
 6. Press **[DRAW CARD]** each turn
+7. Switch to **OGRE** tab to track damage
+
+## Ogre Damage Tracker
+
+The **OGRE** tab tracks the Ogre's current status:
+
+- **Weapons**: Missiles, Main Battery, Secondary Battery, Antipersonnel
+- **Treads**: Track remaining treads and calculated movement
+- Use **[+]** and **[-]** buttons to adjust damage
+- State persists in browser storage
 
 ## Deviation Rules
 
@@ -82,13 +92,16 @@ When an ADVANCE card is drawn and the Ogre must deviate for terrain:
 ## File Structure
 
 ```
-index.html           - Main page
+index.html           - Main page with tabbed interface
 css/terminal.css     - CRT styling
 js/dice.js           - RNG module
 js/solo-engine.js    - Card deck & game logic
 js/combat.js         - Combat helpers
+js/ogre-tracker.js   - Ogre damage tracker module
 js/game.js           - UI controller
+ogre-model.js        - Ogre unit templates
 specs/Ogre_solo.md   - Solo rules reference
+specs/Ogre_models.md - Ogre unit specifications
 ```
 
 ## Credits
