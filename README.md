@@ -6,7 +6,7 @@
 
 # PROGRES - Ogre Solo Play Assistant
 
-**[▶ Play Now on GitHub Pages](https://mattconfuion.github.io/progres/)**
+**[▶ Play Now on GitHub Pages](https://mattconfusion.github.io/progres/)**
 
 A touch-friendly web tool for solo play of Steve Jackson's OGRE (6th Edition).
 
